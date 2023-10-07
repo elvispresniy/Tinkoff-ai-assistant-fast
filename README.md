@@ -6,4 +6,5 @@
   * Running on http://192.168.1.167:8080
 3)
 <img width="1080" alt="image" src="https://github.com/elvispresniy/Tinkoff-ai-assistant-fast/assets/129598369/af022281-ebf7-4a65-94a6-a65ec12e479f">
-
+4)
+<img width="1080" alt="image" src="https://github.com/elvispresniy/Tinkoff-ai-assistant-fast/assets/129598369/ac9faf61-8df6-4413-80af-8a537b1d48ce">
