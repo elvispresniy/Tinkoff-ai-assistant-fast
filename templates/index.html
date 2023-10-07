@@ -65,9 +65,7 @@
 <body>
     <h1>AI-ассистент банка Тинькофф😎</h1>
     <div id="chat-box">
-        <!-- Chat messages will be displayed here -->
         <p>Ассистент: Привет! Я AI-ассистент банка Тинькофф😎</p>
-        <!-- Add more chat messages as needed -->
     </div>
     <input type="text" id="user-input" placeholder="Введите ваше сообщение...">
     <button id="send-button", style ="color:black;">Отправить</button>
@@ -76,9 +74,8 @@
         const chatBox = document.getElementById('chat-box');
         const userInput = document.getElementById('user-input');
         const sendButton = document.getElementById('send-button');
-        let responsePending = false; // Variable to track response status
+        let responsePending = false;
 
-        // Event listener for sending messages
         sendButton.addEventListener('click', () => {
             const userMessage = userInput.value;
 
@@ -87,14 +84,11 @@
                 return;
             }
 
-            // Disable the button while waiting for a response
             sendButton.disabled = true;
 
-            // Append the user's message immediately
             appendMessage(`Вы: ${userMessage}`);
             userInput.value = '';
 
-            // Send the user message to the server and get a response
             fetch('/message', {
                 method: 'POST',
                 headers: {
@@ -106,12 +100,10 @@
             .then(data => {
                 const botMessage = `Ассистент: ${data.message}`;
                 appendMessage(botMessage);
-                // Enable the button after receiving a response
                 sendButton.disabled = false;
             });
         });
 
-        // Function to append messages to the chat box
         function appendMessage(message) {
             const messageElement = document.createElement('p');
             messageElement.textContent = message;
