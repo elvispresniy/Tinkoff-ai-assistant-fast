@@ -22,41 +22,6 @@ index = pinecone.Index('tinkoffai')
 
 vectorstore = Pinecone.from_existing_index("tinkoffai", embedding=embeddings)
 
-def pipeline(query, chat_history):
-
-    summarization = chat_history
-
-    # Расширить запрос пользователя, добавив прошлые запросы
-    query_extended = f"{chat_history[-400:]}{query}"
-    print(f'\nextended query:\n\n{query_extended}')
-
-    # Поски по эмбэддингу
-    documents_raw = vectorstore.similarity_search(query_extended)
-    documents = '\n\n'.join([document.page_content for document in documents_raw])
-
-    # Сборка диалога-запроса
-    conversation_args = {
-        'documents': documents,
-        'history': summarization,
-        'input': query_extended
-    }
-    conversation_prompt = messagesc.templates['conversation_prompt'].format(**conversation_args)
-    print(f'\nconversation_prompt:\n\n{conversation_prompt}')
-    print(f'\nlength of conversation_prompt: {len(conversation_prompt)}')
-
-    # Запрос к модели
-    result = llm.predict(conversation_prompt)
-    print(f'\nresult:\n\n{result}')
-
-    # Сохранить новую историю диалога
-    new_chat_history = f'''
-    Клиент: {query}
-    Бот-ассистент: {result}'''
-
-    print(f'\nnew_chat_history:\n\n{new_chat_history}\n')
-
-    return result, new_chat_history
-
 def new_pipeline(query, chat_history):
 
     # Similarity search
